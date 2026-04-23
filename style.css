@@ -409,6 +409,8 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 5;
+  margin-top: 4rem; /* Ensure space below Sanskrit text */
 }
 
 .scroll-bounce {
@@ -1367,6 +1369,19 @@ body:hover .cursor-dot, body:hover .cursor-outline {
 .reflection-stack-card:hover {
   transform: translateY(-5px);
   border-color: var(--gold);
+}
+
+/* Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://www.transparenttextures.com/patterns/felt.png');
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 @media (max-width: 768px) {
