@@ -199,16 +199,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearSpan = document.getElementById('currentYear');
     if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-    // Interactive Breathwork Widget (Butterfly Sync)
+    // Interactive Breathwork Widget (Zen Sync)
     function initBreathwork() {
         // Create Modal
         const modalHtml = `
             <div class="breathwork-modal" id="breatheModal">
                 <button class="breathwork-close" id="closeBreathe">×</button>
                 <div class="breathe-container">
-                    <div class="butterfly-container">
-                        <div class="butterfly-wing left"></div>
-                        <div class="butterfly-wing right"></div>
+                    <div class="zen-ripple-container">
+                        <div class="zen-ring ring-1"></div>
+                        <div class="zen-ring ring-2"></div>
+                        <div class="zen-ring ring-3"></div>
+                        <div class="zen-core"></div>
                     </div>
                     <div class="breathe-text-container">
                         <span class="bt-inhale">Breathe in deeply...</span>
