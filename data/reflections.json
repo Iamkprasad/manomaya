@@ -1,0 +1,32 @@
+[
+  {
+    "id": "embracing-unknown",
+    "label": "Reflection",
+    "title": "Embracing the Unknown",
+    "quote": "The greatest discoveries arise not in the certainty of knowing, but in the quiet spaces where we allow ourselves to wonder.",
+    "body": "<p>Often, we cling to certainty because it feels safe. We build our lives around what we know, structuring our days to avoid the discomfort of the unfamiliar.</p><p>But when we step into the unknown with an open heart, we create space for growth. It is in these moments of vulnerability that we truly discover our own strength and the vastness of the universe.</p>",
+    "date": "Oct 24, 2023",
+    "author": "manomaya",
+    "image": "assets/gallery-4.jpg"
+  },
+  {
+    "id": "sound-silence",
+    "label": "Note",
+    "title": "The Sound of Silence",
+    "quote": "Listen to silence. It has so much to say.",
+    "body": "<p>In our modern world, silence is often treated as empty space, a void waiting to be filled with noise, notifications, or distractions.</p><p>Try setting aside just five minutes today to sit in complete silence. Notice the thoughts that arise, let them pass like clouds, and appreciate the underlying stillness that is always present within you.</p>",
+    "date": "Nov 02, 2023",
+    "author": "manomaya",
+    "image": "assets/gallery-1.jpg"
+  },
+  {
+    "id": "inner-light",
+    "label": "Reflection",
+    "title": "The Inner Light",
+    "quote": "You are the light you've been seeking in the dark.",
+    "body": "<p>We often look outside for validation and guidance, forgetting that the most profound wisdom comes from within.</p>",
+    "date": "Dec 15, 2023",
+    "author": "manomaya",
+    "image": "assets/gallery-2.jpg"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "stillness",
+    "title": "Stillness",
+    "desc": "In the quiet moments, the mind finds its true home.",
+    "image": "assets/gallery-1.jpg"
+  },
+  {
+    "id": "clarity",
+    "title": "Clarity",
+    "desc": "When the noise fades, vision becomes sharp and clear.",
+    "image": "assets/gallery-2.jpg"
+  },
+  {
+    "id": "love",
+    "title": "love",
+    "desc": "Love is the sun .",
+    "image": "assets/gallery-3.jpg"
+  },
+  {
+    "id": "presence",
+    "title": "Presence",
+    "desc": "The only moment that truly exists is right now.",
+    "image": "assets/gallery-4.jpg"
+  },
+  {
+    "id": "strength",
+    "title": "strength",
+    "desc": "The only moment that truly exists is right now.",
+    "image": "assets/gallery-4.jpg"
+  },
+  {
+    "id": "AURA",
+    "title": "AURA",
+    "desc": "The only moment that truly exists is right now.",
+    "image": "assets/gallery-4.jpg"
+  }
+]

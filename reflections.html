@@ -69,72 +69,9 @@
             </div>
         </section>
 
-        <!-- Search Fake Input (Visual only for static site) -->
-        <section class="px-6 pb-8 fade-in-up" style="animation-delay: 0.4s">
-            <div class="max-w-3xl mx-auto flex-col sm-flex-row gap-4">
-                <div class="search-container relative flex-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                    <input type="text" placeholder="Search reflections..." class="search-input bg-background border-primary-20">
-                </div>
-                <div class="filter-buttons flex gap-2">
-                    <button class="filter-btn active">All</button>
-                    <button class="filter-btn">Notes</button>
-                    <button class="filter-btn">Reflections</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Feed static content -->
-        <section class="px-6 pb-24">
-            <div class="max-w-750 mx-auto space-y-10">
-                
-                <!-- Reflection Card 1 -->
-                <article class="feed-card scroll-anim">
-                    <div class="max-w-700 mx-auto">
-                        <span class="feed-label">Reflection</span>
-                        <h2 class="feed-title mt-2 mb-3">Embracing the Unknown</h2>
-                        <p class="feed-quote text-muted-foreground italic mb-6">"The greatest discoveries arise not in the certainty of knowing, but in the quiet spaces where we allow ourselves to wonder."</p>
-                        <div class="feed-body space-y-3">
-                            <p>Often, we cling to certainty because it feels safe. We build our lives around what we know, structuring our days to avoid the discomfort of the unfamiliar.</p>
-                            <p>But when we step into the unknown with an open heart, we create space for growth. It is in these moments of vulnerability that we truly discover our own strength and the vastness of the universe.</p>
-                        </div>
-                        <div class="feed-footer mt-8 pt-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs text-muted-50">manomaya</span>
-                                <span class="text-muted-30">·</span>
-                                <span class="text-xs text-muted-40">Oct 24, 2023</span>
-                            </div>
-                            <div class="flex items-center">
-                                <button class="action-btn text-muted-40"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></button>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Reflection Card 2 -->
-                <article class="feed-card scroll-anim stagger-1">
-                    <div class="max-w-700 mx-auto">
-                        <span class="feed-label">Note</span>
-                        <h2 class="feed-title mt-2 mb-3">The Sound of Silence</h2>
-                        <p class="feed-quote text-muted-foreground italic mb-6">"Listen to silence. It has so much to say."</p>
-                        <div class="feed-body space-y-3">
-                            <p>In our modern world, silence is often treated as empty space, a void waiting to be filled with noise, notifications, or distractions.</p>
-                            <p>Try setting aside just five minutes today to sit in complete silence. Notice the thoughts that arise, let them pass like clouds, and appreciate the underlying stillness that is always present within you.</p>
-                        </div>
-                        <div class="feed-footer mt-8 pt-4">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs text-muted-50">manomaya</span>
-                                <span class="text-muted-30">·</span>
-                                <span class="text-xs text-muted-40">Nov 02, 2023</span>
-                            </div>
-                            <div class="flex items-center">
-                                <button class="action-btn text-muted-40"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></button>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
+        <!-- Stacking Reflections Section -->
+        <section id="reflections-stack-container" class="reflection-stacking-section">
+            <!-- Dynamic Content will be injected here -->
         </section>
     </main>
 
