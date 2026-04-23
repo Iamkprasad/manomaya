@@ -1,16 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Manomaya: Initializing premium features...');
 
-    // Time-of-Day Dynamic Theme
-    const hour = new Date().getHours();
-    if (hour >= 5 && hour < 11) {
-        document.body.classList.add('theme-morning');
-    } else if (hour >= 17 && hour < 21) {
-        document.body.classList.add('theme-evening');
-    } else if (hour >= 21 || hour < 5) {
-        document.body.classList.add('theme-night');
-    }
-
     // 1. Initialize Shared Observer early
     const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -209,15 +199,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const yearSpan = document.getElementById('currentYear');
     if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-    // Interactive Breathwork Widget
+    // Interactive Breathwork Widget (Butterfly Sync)
     function initBreathwork() {
         // Create Modal
         const modalHtml = `
             <div class="breathwork-modal" id="breatheModal">
                 <button class="breathwork-close" id="closeBreathe">×</button>
                 <div class="breathe-container">
-                    <div class="breathe-circle" id="breatheCircle"></div>
-                    <div class="breathe-text" id="breatheText">Ready</div>
+                    <div class="butterfly-container">
+                        <div class="butterfly-wing left"></div>
+                        <div class="butterfly-wing right"></div>
+                    </div>
+                    <div class="breathe-text-container">
+                        <span class="bt-inhale">Breathe in deeply...</span>
+                        <span class="bt-hold1">Hold the stillness...</span>
+                        <span class="bt-exhale">Release slowly...</span>
+                        <span class="bt-hold2">Rest...</span>
+                    </div>
                 </div>
             </div>
         `;
@@ -225,10 +223,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const modal = document.getElementById('breatheModal');
         const closeBtn = document.getElementById('closeBreathe');
-        const circle = document.getElementById('breatheCircle');
-        const text = document.getElementById('breatheText');
-        let breatheInterval;
-        let isBreathing = false;
 
         // Inject Nav Buttons
         const breatheBtnHtml = `<button class="nav-breathe-btn breathe-trigger">Breathe</button>`;
@@ -238,48 +232,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (desktopNav) desktopNav.insertAdjacentHTML('beforeend', breatheBtnHtml);
         if (mobileNavContent) mobileNavContent.insertAdjacentHTML('beforeend', breatheBtnHtml);
 
-        // Breathing Logic (4-4-4-4 box breathing simplified to Inhale, Hold, Exhale, Hold)
         function startBreathing() {
-            isBreathing = true;
-            text.style.opacity = 0;
-            
-            setTimeout(() => {
-                text.textContent = 'Inhale...';
-                text.style.opacity = 1;
-                circle.className = 'breathe-circle inhale';
-            }, 500);
-
-            let phase = 1; // 1: Inhale, 2: Hold, 3: Exhale, 4: Hold
-            breatheInterval = setInterval(() => {
-                if (!isBreathing) return;
-                text.style.opacity = 0;
-                
-                setTimeout(() => {
-                    phase = (phase % 4) + 1;
-                    if (phase === 1) {
-                        text.textContent = 'Inhale...';
-                        circle.className = 'breathe-circle inhale';
-                    } else if (phase === 2) {
-                        text.textContent = 'Hold...';
-                        circle.className = 'breathe-circle hold';
-                    } else if (phase === 3) {
-                        text.textContent = 'Exhale...';
-                        circle.className = 'breathe-circle exhale';
-                    } else if (phase === 4) {
-                        text.textContent = 'Hold...';
-                        circle.className = 'breathe-circle hold';
-                    }
-                    text.style.opacity = 1;
-                }, 500); // 0.5s fade transition
-            }, 4000); // 4s per phase
+            modal.classList.add('breathing');
         }
 
         function stopBreathing() {
-            isBreathing = false;
-            clearInterval(breatheInterval);
-            circle.className = 'breathe-circle';
-            text.textContent = 'Ready';
-            text.style.opacity = 1;
+            modal.classList.remove('breathing');
         }
 
         // Event Listeners
@@ -290,7 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (mobileNav && mobileNav.classList.contains('open')) {
                     menuBtn.click(); // close mobile menu if open
                 }
-                setTimeout(startBreathing, 1000);
+                // Small delay to allow fade-in before animation starts
+                setTimeout(startBreathing, 500);
             });
         });
 
@@ -389,6 +348,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return JSON.parse(localStorage.getItem('manomaya_saved') || '[]');
     }
 
+    // Toast Notification System
+    const toastHtml = `<div id="toast" class="toast-notification">Saved to your journey.</div>`;
+    document.body.insertAdjacentHTML('beforeend', toastHtml);
+    const toast = document.getElementById('toast');
+    let toastTimeout;
+
+    function showToast(message) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
     document.body.addEventListener('click', (e) => {
         const btn = e.target.closest('.save-btn');
         if (btn) {
@@ -400,6 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (saved.includes(id)) {
                 saved = saved.filter(item => item !== id);
                 btn.classList.remove('saved');
+                showToast('Removed from your journey.');
                 
                 if (isJourneyPage) {
                     const layer = btn.closest('.reflection-stack-layer') || btn.closest('.block');
@@ -412,10 +387,25 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 saved.push(id);
                 btn.classList.add('saved');
+                showToast('Added to your journey.');
             }
             localStorage.setItem('manomaya_saved', JSON.stringify(saved));
         }
     });
+
+    // Private Journal Logic
+    const journalInput = document.getElementById('journal-input');
+    const saveJournalBtn = document.getElementById('save-journal-btn');
+    
+    if (journalInput && saveJournalBtn) {
+        const savedJournal = localStorage.getItem('manomaya_journal') || '';
+        journalInput.value = savedJournal;
+
+        saveJournalBtn.addEventListener('click', () => {
+            localStorage.setItem('manomaya_journal', journalInput.value);
+            showToast('Reflection saved privately.');
+        });
+    }
 
     const savedContainer = document.getElementById('saved-container');
     if (savedContainer) {

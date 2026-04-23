@@ -29,31 +29,6 @@
   --glass-blur: 16px;
 }
 
-/* Dynamic Themes */
-body.theme-morning {
-  --teal-deep: hsl(35, 35%, 28%);
-  --teal-darker: hsl(35, 35%, 20%);
-  --background: hsl(35, 35%, 28%);
-  --gold: hsl(25, 55%, 65%);
-  --glass-bg: hsla(35, 35%, 20%, 0.7);
-}
-
-body.theme-evening {
-  --teal-deep: hsl(200, 45%, 22%);
-  --teal-darker: hsl(200, 45%, 16%);
-  --background: hsl(200, 45%, 22%);
-  --gold: hsl(38, 52%, 60%);
-  --glass-bg: hsla(200, 45%, 16%, 0.7);
-}
-
-body.theme-night {
-  --teal-deep: hsl(230, 40%, 15%);
-  --teal-darker: hsl(230, 40%, 10%);
-  --background: hsl(230, 40%, 15%);
-  --gold: hsl(45, 40%, 65%);
-  --glass-bg: hsla(230, 40%, 10%, 0.7);
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -772,34 +747,109 @@ h1, h2, h3, h4, h5, h6 {
   width: 300px;
   height: 300px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 3rem;
 }
 
-.breathe-circle {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: radial-gradient(circle, hsla(38, 52%, 62%, 0.4) 0%, transparent 70%);
-  filter: blur(10px);
-  transform: scale(1);
-  transition: transform 4s linear;
-}
-
-.breathe-circle.inhale { transform: scale(3); }
-.breathe-circle.hold { transition: transform 0s; }
-.breathe-circle.exhale { transform: scale(1); }
-
-.breathe-text {
+.butterfly-container {
   position: relative;
-  z-index: 10;
+  width: 120px;
+  height: 120px;
+  perspective: 1000px;
+}
+
+.butterfly-wing {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, hsla(170, 52%, 40%, 0.8), hsla(38, 52%, 62%, 0.6));
+  border-radius: 50% 50% 10% 50%;
+  box-shadow: inset 0 0 20px hsla(38, 52%, 62%, 0.3), 0 0 15px hsla(170, 52%, 40%, 0.4);
+  transform-origin: right center;
+  animation: flapLeft 16s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  animation-play-state: paused;
+}
+
+.butterfly-wing.right {
+  right: 0;
+  border-radius: 50% 50% 50% 10%;
+  transform-origin: left center;
+  animation: flapRight 16s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  animation-play-state: paused;
+}
+
+.breathwork-modal.breathing .butterfly-wing {
+  animation-play-state: running;
+}
+
+@keyframes flapLeft {
+  0% { transform: rotateY(0deg) scale(0.8); opacity: 0.5; }
+  25% { transform: rotateY(65deg) scale(1.2); opacity: 1; }
+  50% { transform: rotateY(65deg) scale(1.2); opacity: 1; }
+  75% { transform: rotateY(0deg) scale(0.8); opacity: 0.5; }
+  100% { transform: rotateY(0deg) scale(0.8); opacity: 0.5; }
+}
+
+@keyframes flapRight {
+  0% { transform: rotateY(0deg) scale(0.8); opacity: 0.5; }
+  25% { transform: rotateY(-65deg) scale(1.2); opacity: 1; }
+  50% { transform: rotateY(-65deg) scale(1.2); opacity: 1; }
+  75% { transform: rotateY(0deg) scale(0.8); opacity: 0.5; }
+  100% { transform: rotateY(0deg) scale(0.8); opacity: 0.5; }
+}
+
+.breathe-text-container {
+  position: relative;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: var(--font-serif);
   font-size: 2rem;
   color: var(--cream);
-  letter-spacing: 0.1em;
-  opacity: 0.8;
-  transition: opacity 0.5s ease;
+  letter-spacing: 0.05em;
+  width: 100%;
+}
+
+.breathe-text-container span {
+  position: absolute;
+  opacity: 0;
+  animation-duration: 16s;
+  animation-iteration-count: infinite;
+  white-space: nowrap;
+  animation-play-state: paused;
+}
+
+.breathwork-modal.breathing .breathe-text-container span {
+  animation-play-state: running;
+}
+
+.bt-inhale { animation-name: textInhale; }
+.bt-hold1 { animation-name: textHold1; }
+.bt-exhale { animation-name: textExhale; }
+.bt-hold2 { animation-name: textHold2; }
+
+@keyframes textInhale {
+  0%, 20% { opacity: 1; transform: translateY(0); }
+  25%, 100% { opacity: 0; transform: translateY(-10px); }
+}
+@keyframes textHold1 {
+  0%, 20% { opacity: 0; transform: translateY(10px); }
+  25%, 45% { opacity: 1; transform: translateY(0); }
+  50%, 100% { opacity: 0; transform: translateY(-10px); }
+}
+@keyframes textExhale {
+  0%, 45% { opacity: 0; transform: translateY(10px); }
+  50%, 70% { opacity: 1; transform: translateY(0); }
+  75%, 100% { opacity: 0; transform: translateY(-10px); }
+}
+@keyframes textHold2 {
+  0%, 70% { opacity: 0; transform: translateY(10px); }
+  75%, 95% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-10px); }
 }
 
 .nav-breathe-btn {
@@ -854,6 +904,32 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Animations */
+
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: var(--teal-darker);
+  border: 1px solid var(--border-gold-30);
+  color: var(--gold);
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  z-index: 9999;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.w-full { width: 100%; }
 
 .fade-in {
   opacity: 0;
