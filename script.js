@@ -111,12 +111,37 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+    function getTodayString() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
     if (reflectionsStackContainer) {
         fetch(`data/reflections.json${cacheBuster}`)
             .then(res => res.json())
             .then(data => {
-                renderStackReflections(data);
-                updateActiveImages(); // Update cache
+                const today = getTodayString();
+                // Filter: Only show reflections from today or the past
+                const revealedReflections = data
+                    .filter(r => r.date <= today)
+                    .sort((a, b) => b.date.localeCompare(a.date)); // Newest first
+
+                renderStackReflections(revealedReflections);
+                
+                // Update Home Page "Daily Reflection" if elements exist
+                const quoteEl = document.getElementById('daily-quote');
+                if (quoteEl && revealedReflections.length > 0) {
+                    const daily = revealedReflections[0]; // Most recent revealed one
+                    const descEl = document.getElementById('daily-desc');
+                    const authorEl = document.getElementById('daily-author');
+                    
+                    quoteEl.textContent = `"${daily.quote}"`;
+                    if (descEl) descEl.textContent = daily.desc || daily.quote;
+                    if (authorEl) authorEl.textContent = `— ${daily.author || 'manomaya'}`;
+                }
             })
             .catch(err => {
                 console.error('Error loading reflections:', err);
@@ -146,9 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const savedIds = JSON.parse(localStorage.getItem('manomaya_saved') || '[]');
         reflectionsStackContainer.innerHTML = reflections.map(r => `
             <div class="reflection-stack-layer">
-                <div class="stack-img-wrapper" style="opacity: 0.3;">
-                    <img src="${r.image}" alt="" class="stack-img" style="filter: blur(10px);">
-                </div>
                 <div class="reflection-stack-card scroll-anim">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                         <span class="feed-label">${r.label}</span>
