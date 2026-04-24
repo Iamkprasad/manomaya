@@ -98,19 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dynamic Content Fetching with Cache Busting
     const cacheBuster = `?t=${new Date().getTime()}`;
 
-    if (stackingContainer) {
-        fetch(`data/stack-images.json${cacheBuster}`)
-            .then(res => res.json())
-            .then(data => {
-                renderStackImages(data);
-                updateActiveImages(); // Update cache
-            })
-            .catch(err => {
-                console.error('Error loading stack images:', err);
-                stackingContainer.innerHTML = '<p class="text-center py-20 text-muted-foreground">Unable to load content.</p>';
-            });
-    }
-
     function getTodayString() {
         const now = new Date();
         const year = now.getFullYear();
@@ -120,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const dailyQuoteEl = document.getElementById('daily-quote');
-    if (reflectionsStackContainer || dailyQuoteEl) {
+    if (stackingContainer || reflectionsStackContainer || dailyQuoteEl) {
         fetch(`data/reflections.json${cacheBuster}`)
             .then(res => res.json())
             .then(data => {
@@ -130,36 +117,41 @@ document.addEventListener('DOMContentLoaded', () => {
                     .filter(r => r.date <= today)
                     .sort((a, b) => b.date.localeCompare(a.date)); // Newest first
 
-                renderStackReflections(revealedReflections);
+                // 1. Home Page & Reflections Page: Stacking Gallery
+                if (stackingContainer) {
+                    renderStackReflectionsGallery(revealedReflections);
+                    updateActiveImages();
+                }
+
+                // 2. Reflections Page: Feed List
+                if (reflectionsStackContainer) {
+                    renderStackReflections(revealedReflections);
+                }
                 
-                // Update Home Page "Daily Reflection" if elements exist
-                const quoteEl = document.getElementById('daily-quote');
-                if (quoteEl && revealedReflections.length > 0) {
+                // 3. Home Page: "Daily Reflection" Hero Text
+                if (dailyQuoteEl && revealedReflections.length > 0) {
                     const daily = revealedReflections[0]; // Most recent revealed one
                     const descEl = document.getElementById('daily-desc');
                     const authorEl = document.getElementById('daily-author');
                     
-                    quoteEl.textContent = `"${daily.quote}"`;
+                    dailyQuoteEl.textContent = `"${daily.quote}"`;
                     if (descEl) descEl.textContent = daily.desc || daily.quote;
                     if (authorEl) authorEl.textContent = `— ${daily.author || 'manomaya'}`;
                 }
             })
             .catch(err => {
-                console.error('Error loading reflections:', err);
+                console.error('Error loading unified reflections:', err);
             });
     }
 
-    function renderStackImages(images) {
-        stackingContainer.innerHTML = images.map(img => `
+    function renderStackReflectionsGallery(reflections) {
+        stackingContainer.innerHTML = reflections.map(r => `
             <div class="stack-layer">
                 <div class="stack-content">
-                    <div class="stack-img-wrapper">
-                        <img src="${img.image}" alt="${img.title}" class="stack-img">
-                        <div class="stack-overlay"></div>
-                    </div>
-                    <div class="stack-text scroll-anim">
-                        <h2 class="stack-title">${img.title}</h2>
-                        <p class="stack-desc">${img.desc}</p>
+                    <div class="reflection-stack-card scroll-anim" style="max-width: 600px; padding: 4rem; text-align: center; background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--border-gold-30); border-radius: 2rem;">
+                        <span class="feed-label" style="display: block; margin-bottom: 2rem;">${r.label}</span>
+                        <h2 class="feed-title" style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--gold);">${r.title}</h2>
+                        <p class="feed-quote" style="font-size: 1.2rem; font-style: italic; color: var(--cream); opacity: 0.9;">"${r.quote}"</p>
                     </div>
                 </div>
             </div>
