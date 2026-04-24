@@ -1548,6 +1548,8 @@ body:hover .cursor-dot, body:hover .cursor-outline {
 .stacking-section {
   position: relative;
   background-color: var(--background);
+  margin-top: 10rem;
+  padding-bottom: 5rem;
 }
 
 .stack-layer {
@@ -1574,8 +1576,18 @@ body:hover .cursor-dot, body:hover .cursor-outline {
 
 .stack-img-wrapper {
   position: absolute;
-  inset: 0;
+  inset: 1.5rem;
   z-index: 1;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  border: 1px solid var(--border-gold-10);
+}
+
+@media (min-width: 768px) {
+  .stack-img-wrapper {
+    inset: 6rem;
+  }
 }
 
 .stack-img {
