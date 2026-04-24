@@ -794,18 +794,22 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes breatheCore {
   0% { transform: scale(1); opacity: 0.8; }
-  25% { transform: scale(2.5); opacity: 1; }
-  50% { transform: scale(2.5); opacity: 1; }
+  25% { transform: scale(1.5); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 1; }
   75% { transform: scale(1); opacity: 0.8; }
   100% { transform: scale(1); opacity: 0.8; }
 }
 
 @keyframes breatheRing {
   0% { transform: scale(0.8); opacity: 0; border-width: 1px; }
-  25% { transform: scale(2.2); opacity: 0.6; border-width: 2px; }
-  50% { transform: scale(2.2); opacity: 0.6; border-width: 2px; }
+  25% { transform: scale(1.4); opacity: 0.6; border-width: 2px; }
+  50% { transform: scale(1.4); opacity: 0.6; border-width: 2px; }
   75% { transform: scale(0.8); opacity: 0; border-width: 1px; }
   100% { transform: scale(0.8); opacity: 0; border-width: 1px; }
+}
+
+.zen-core, .zen-ring {
+  will-change: transform, opacity;
 }
 
 .breathe-text-container {
@@ -904,10 +908,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .save-btn.saved {
   color: var(--gold);
+  animation: savePop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .save-btn.saved svg {
   fill: var(--gold);
+}
+
+@keyframes savePop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
 }
 
 /* Journal CSS */

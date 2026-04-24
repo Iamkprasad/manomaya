@@ -563,9 +563,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 savedContainer.innerHTML = allSaved.map(r => `
                     <div class="reflection-stack-layer">
-                        <div class="stack-img-wrapper" style="opacity: 0.3;">
-                            <img src="${r.image}" alt="" class="stack-img" style="filter: blur(10px);">
-                        </div>
                         <div class="reflection-stack-card scroll-anim">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
                                 <span class="feed-label">${r.label}</span>
