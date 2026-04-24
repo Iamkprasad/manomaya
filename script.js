@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Performance Optimized Scroll Logic
     let isScrolling = false;
     const isMobile = window.innerWidth <= 768;
-    
+
     // Cache all stack images once they are loaded
     let activeStackImages = [];
     const updateActiveImages = () => {
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
         `).join('');
-        
+
         stackingContainer.querySelectorAll('.scroll-anim').forEach(el => scrollObserver.observe(el));
     }
 
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const breatheBtnHtml = `<button class="nav-breathe-btn breathe-trigger">Breathe</button>`;
         const desktopNav = document.querySelector('.desktop-nav');
         const mobileNavContent = document.querySelector('.mobile-nav-content');
-        
+
         if (desktopNav) desktopNav.insertAdjacentHTML('beforeend', breatheBtnHtml);
         if (mobileNavContent) mobileNavContent.insertAdjacentHTML('beforeend', breatheBtnHtml);
 
@@ -333,14 +333,113 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             ${blog.image ? `<div class="blog-img-container mb-12 fade-in-up"><img src="${blog.image}" class="blog-post-main-img"></div>` : ''}
             <div class="feed-body space-y-6 blog-post-content text-justify fade-in">${formattedContent}</div>
+            
+            <!-- Comments Section -->
+            <div class="comments-section mt-24 pt-12 border-gold-top fade-in-up">
+                <h3 class="text-2xl font-serif mb-8 text-center">Reflections</h3>
+                <div id="comments-container" class="space-y-6 mb-12">
+                    <p class="text-center text-muted-foreground italic text-sm">Loading thoughts...</p>
+                </div>
+
+                <div class="comment-form-container max-w-xl mx-auto bg-[#0a1f1c]/50 p-8 rounded border border-gold/10">
+                    <h4 class="text-xl font-serif mb-6 text-center text-gold">Share your thought</h4>
+                    <form id="thought-form" class="space-y-4">
+                        <div>
+                            <label for="comment-name" class="block text-sm text-gold mb-2">Name (Optional)</label>
+                            <input type="text" id="comment-name" class="w-full bg-transparent border border-gold/20 rounded px-4 py-3 text-foreground focus:border-gold focus:outline-none transition-colors" placeholder="How should we call you?">
+                        </div>
+                        <div>
+                            <label for="comment-text" class="block text-sm text-gold mb-2">Your Thought</label>
+                            <textarea id="comment-text" required rows="4" class="w-full bg-transparent border border-gold/20 rounded px-4 py-3 text-foreground focus:border-gold focus:outline-none transition-colors" placeholder="What are you noticing?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full nav-breathe-btn text-center mt-6">Send into the void</button>
+                        <p id="form-status" class="text-center text-sm text-gold mt-4 hidden">Your thought has been shared quietly.</p>
+                    </form>
+                </div>
+            </div>
         `;
+
+        // Fetch and render comments
+        fetch(`data/comments.json${cacheBuster}`)
+            .then(res => res.json())
+            .then(comments => {
+                const postComments = comments.filter(c => c.blogId === postId);
+                const commentsDiv = document.getElementById('comments-container');
+
+                if (postComments.length === 0) {
+                    commentsDiv.innerHTML = '<p class="text-center text-muted-foreground italic text-sm">Be the first to leave a thought.</p>';
+                    return;
+                }
+
+                commentsDiv.innerHTML = postComments.map(c => `
+                    <div class="comment-card bg-[#0a1f1c]/30 p-6 rounded border border-gold/5 transition-colors hover:border-gold/20">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-gold font-serif text-lg">${c.name || 'A Wanderer'}</span>
+                            <span class="text-xs text-muted-50">${c.date}</span>
+                        </div>
+                        <p class="text-sm text-foreground/90 leading-relaxed">${c.text}</p>
+                    </div>
+                `).join('');
+            })
+            .catch(() => {
+                document.getElementById('comments-container').innerHTML = '';
+            });
+
+        // Handle Form Submission (AJAX to Google Forms)
+        const form = document.getElementById('thought-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('comment-name').value || 'A Wanderer';
+            const text = document.getElementById('comment-text').value;
+            const status = document.getElementById('form-status');
+            const submitBtn = form.querySelector('button[type="submit"]');
+
+            // --- USER CONFIGURATION REQUIRED ---
+            // 1. Replace with your Google Form action URL
+            const GOOGLE_FORM_ACTION_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdYVV3FwvobzzO6JR8mgbXC4yAAu5iDwQOazAUtRFWeKteFyg/formResponse';
+
+            // 2. Replace with your Google Form entry IDs
+            const ENTRY_ID_NAME = 'entry.1503979514';
+            const ENTRY_ID_TEXT = 'entry.1805661147';
+            const ENTRY_ID_BLOG = 'entry.1564854692';
+
+            if (GOOGLE_FORM_ACTION_URL === 'YOUR_GOOGLE_FORM_ACTION_URL') {
+                alert("Please configure the Google Form URL in script.js to enable submissions.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append(ENTRY_ID_NAME, name);
+            formData.append(ENTRY_ID_TEXT, text);
+            formData.append(ENTRY_ID_BLOG, postId);
+
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            fetch(GOOGLE_FORM_ACTION_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(() => {
+                form.reset();
+                submitBtn.textContent = 'Send into the void';
+                submitBtn.disabled = false;
+                status.classList.remove('hidden');
+                setTimeout(() => status.classList.add('hidden'), 5000);
+            }).catch(error => {
+                console.error('Error submitting form', error);
+                submitBtn.textContent = 'Send into the void';
+                submitBtn.disabled = false;
+            });
+        });
     }
 
     // --- Saved Wisdom (My Journey) Logic ---
     const isJourneyPage = window.location.pathname.includes('journey');
     const savedLinkHtmlDesktop = `<a href="journey.html" class="nav-link ${isJourneyPage ? 'active' : ''}">Journey</a>`;
     const savedLinkHtmlMobile = `<a href="journey.html" class="mobile-nav-link ${isJourneyPage ? 'active' : ''}">Journey</a>`;
-    
+
     const desktopNavObj = document.querySelector('.desktop-nav');
     const mobileNavObj = document.querySelector('.mobile-nav-content');
     if (desktopNavObj) desktopNavObj.insertAdjacentHTML('beforeend', savedLinkHtmlDesktop);
@@ -372,12 +471,12 @@ document.addEventListener('DOMContentLoaded', () => {
             e.stopPropagation();
             const id = btn.dataset.id;
             let saved = getSavedItems();
-            
+
             if (saved.includes(id)) {
                 saved = saved.filter(item => item !== id);
                 btn.classList.remove('saved');
                 showToast('Removed from your journey.');
-                
+
                 if (isJourneyPage) {
                     const layer = btn.closest('.reflection-stack-layer') || btn.closest('.block');
                     if (layer) layer.remove();
@@ -398,7 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Private Journal Logic
     const journalInput = document.getElementById('journal-input');
     const saveJournalBtn = document.getElementById('save-journal-btn');
-    
+
     if (journalInput && saveJournalBtn) {
         const savedJournal = localStorage.getItem('manomaya_journal') || '';
         journalInput.value = savedJournal;
@@ -433,12 +532,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }));
 
                 const allSaved = [...savedReflections, ...savedBlogs];
-                
+
                 if (allSaved.length === 0) {
-                     savedContainer.innerHTML = '<p class="text-center text-muted-foreground py-20">Your journey is currently empty.</p>';
-                     return;
+                    savedContainer.innerHTML = '<p class="text-center text-muted-foreground py-20">Your journey is currently empty.</p>';
+                    return;
                 }
-                
+
                 savedContainer.innerHTML = allSaved.map(r => `
                     <div class="reflection-stack-layer">
                         <div class="stack-img-wrapper" style="opacity: 0.3;">
