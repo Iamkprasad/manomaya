@@ -336,24 +336,24 @@ document.addEventListener('DOMContentLoaded', () => {
             
             <!-- Comments Section -->
             <div class="comments-section mt-24 pt-12 border-gold-top fade-in-up">
-                <h3 class="text-2xl font-serif mb-8 text-center">Reflections</h3>
-                <div id="comments-container" class="space-y-6 mb-12">
+                <h3 class="text-3xl font-serif mb-12 text-center text-gold">Reflections</h3>
+                <div id="comments-container" class="space-y-8 mb-16">
                     <p class="text-center text-muted-foreground italic text-sm">Loading thoughts...</p>
                 </div>
 
-                <div class="comment-form-container max-w-xl mx-auto bg-[#0a1f1c]/50 p-8 rounded border border-gold/10">
-                    <h4 class="text-xl font-serif mb-6 text-center text-gold">Share your thought</h4>
-                    <form id="thought-form" class="space-y-4">
-                        <div>
-                            <label for="comment-name" class="block text-sm text-gold mb-2">Name (Optional)</label>
-                            <input type="text" id="comment-name" class="w-full bg-transparent border border-gold/20 rounded px-4 py-3 text-foreground focus:border-gold focus:outline-none transition-colors" placeholder="How should we call you?">
+                <div class="comment-form-container">
+                    <h4 class="text-2xl font-serif mb-8 text-center text-gold">Share your thought</h4>
+                    <form id="thought-form" class="space-y-6">
+                        <div class="space-y-2">
+                            <label for="comment-name" class="block text-xs uppercase tracking-widest text-gold/60 ml-1">Name (Optional)</label>
+                            <input type="text" id="comment-name" class="thought-input" placeholder="How should we call you?">
                         </div>
-                        <div>
-                            <label for="comment-text" class="block text-sm text-gold mb-2">Your Thought</label>
-                            <textarea id="comment-text" required rows="4" class="w-full bg-transparent border border-gold/20 rounded px-4 py-3 text-foreground focus:border-gold focus:outline-none transition-colors" placeholder="What are you noticing?"></textarea>
+                        <div class="space-y-2">
+                            <label for="comment-text" class="block text-xs uppercase tracking-widest text-gold/60 ml-1">Your Thought</label>
+                            <textarea id="comment-text" required rows="4" class="thought-input" placeholder="What are you noticing in this moment?"></textarea>
                         </div>
-                        <button type="submit" class="w-full nav-breathe-btn text-center mt-6">Send into the void</button>
-                        <p id="form-status" class="text-center text-sm text-gold mt-4 hidden">Your thought has been shared quietly.</p>
+                        <button type="submit" class="comment-submit-btn">Send into the void</button>
+                        <p id="form-status" class="text-center text-sm text-gold mt-6 italic hidden animate-pulse">Your thought has been shared quietly.</p>
                     </form>
                 </div>
             </div>
@@ -367,17 +367,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const commentsDiv = document.getElementById('comments-container');
 
                 if (postComments.length === 0) {
-                    commentsDiv.innerHTML = '<p class="text-center text-muted-foreground italic text-sm">Be the first to leave a thought.</p>';
+                    commentsDiv.innerHTML = '<p class="text-center text-muted-foreground italic text-sm opacity-60">The silence is waiting for your words.</p>';
                     return;
                 }
 
                 commentsDiv.innerHTML = postComments.map(c => `
-                    <div class="comment-card bg-[#0a1f1c]/30 p-6 rounded border border-gold/5 transition-colors hover:border-gold/20">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="text-gold font-serif text-lg">${c.name || 'A Wanderer'}</span>
-                            <span class="text-xs text-muted-50">${c.date}</span>
+                    <div class="comment-card">
+                        <div class="flex justify-between items-baseline mb-2">
+                            <span class="comment-author">${c.name || 'A Wanderer'}</span>
+                            <span class="comment-date">${c.date}</span>
                         </div>
-                        <p class="text-sm text-foreground/90 leading-relaxed">${c.text}</p>
+                        <p class="comment-text">${c.text}</p>
                     </div>
                 `).join('');
             })
