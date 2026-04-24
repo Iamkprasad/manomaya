@@ -107,30 +107,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const dailyQuoteEl = document.getElementById('daily-quote');
-    if (stackingContainer || reflectionsStackContainer || dailyQuoteEl) {
+    if (stackingContainer) {
+        fetch(`data/stack-images.json${cacheBuster}`)
+            .then(res => res.json())
+            .then(data => {
+                renderStackImages(data);
+                updateActiveImages(); // Update cache
+            })
+            .catch(err => {
+                console.error('Error loading stack images:', err);
+            });
+    }
+
+    if (reflectionsStackContainer || dailyQuoteEl) {
         fetch(`data/reflections.json${cacheBuster}`)
             .then(res => res.json())
             .then(data => {
                 const today = getTodayString();
-                // Filter: Only show reflections from today or the past
                 const revealedReflections = data
                     .filter(r => r.date <= today)
-                    .sort((a, b) => b.date.localeCompare(a.date)); // Newest first
+                    .sort((a, b) => b.date.localeCompare(a.date));
 
-                // 1. Home Page & Reflections Page: Stacking Gallery
-                if (stackingContainer) {
-                    renderStackReflectionsGallery(revealedReflections);
-                    updateActiveImages();
-                }
-
-                // 2. Reflections Page: Feed List
                 if (reflectionsStackContainer) {
-                    renderStackReflections(revealedReflections);
+                    renderReflectionsFeed(revealedReflections);
                 }
                 
-                // 3. Home Page: "Daily Reflection" Hero Text
                 if (dailyQuoteEl && revealedReflections.length > 0) {
-                    const daily = revealedReflections[0]; // Most recent revealed one
+                    const daily = revealedReflections[0];
                     const descEl = document.getElementById('daily-desc');
                     const authorEl = document.getElementById('daily-author');
                     
@@ -138,57 +141,54 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (descEl) descEl.textContent = daily.desc || daily.quote;
                     if (authorEl) authorEl.textContent = `— ${daily.author || 'manomaya'}`;
                 }
-            })
-            .catch(err => {
-                console.error('Error loading unified reflections:', err);
             });
     }
 
-    function renderStackReflectionsGallery(reflections) {
-        stackingContainer.innerHTML = reflections.map(r => `
+    function renderStackImages(images) {
+        stackingContainer.innerHTML = images.map(img => `
             <div class="stack-layer">
                 <div class="stack-content">
-                    <div class="reflection-stack-card scroll-anim" style="max-width: 600px; padding: 4rem; text-align: center; background: var(--glass-bg); backdrop-filter: blur(var(--glass-blur)); border: 1px solid var(--border-gold-30); border-radius: 2rem;">
-                        <span class="feed-label" style="display: block; margin-bottom: 2rem;">${r.label}</span>
-                        <h2 class="feed-title" style="font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--gold);">${r.title}</h2>
-                        <p class="feed-quote" style="font-size: 1.2rem; font-style: italic; color: var(--cream); opacity: 0.9;">"${r.quote}"</p>
+                    <div class="stack-img-wrapper">
+                        <img src="${img.image}" alt="${img.title}" class="stack-img">
+                        <div class="stack-overlay"></div>
+                    </div>
+                    <div class="stack-text scroll-anim">
+                        <h2 class="stack-title">${img.title}</h2>
+                        <p class="stack-desc">${img.desc}</p>
                     </div>
                 </div>
             </div>
         `).join('');
-
         stackingContainer.querySelectorAll('.scroll-anim').forEach(el => scrollObserver.observe(el));
     }
 
-    function renderStackReflections(reflections) {
+    function renderReflectionsFeed(reflections) {
         const savedIds = JSON.parse(localStorage.getItem('manomaya_saved') || '[]');
         reflectionsStackContainer.innerHTML = reflections.map(r => `
-            <div class="reflection-stack-layer">
-                <div class="reflection-stack-card scroll-anim">
+            <div class="reflection-feed-item py-12 border-gold-bottom">
+                <div class="reflection-card-simple scroll-anim">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                        <span class="feed-label">${r.label}</span>
+                        <span class="feed-label text-gold uppercase tracking-widest text-xs">${r.label}</span>
                         <button class="save-btn ${savedIds.includes(r.id) ? 'saved' : ''}" data-id="${r.id}" aria-label="Save">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                         </button>
                     </div>
-                    <h2 class="feed-title mt-2 mb-3">${r.title}</h2>
-                    <p class="feed-quote text-muted-foreground italic mb-6">"${r.quote}"</p>
-                    <div class="feed-body space-y-3">
+                    <h2 class="text-3xl font-serif text-cream mb-4">${r.title}</h2>
+                    <p class="text-xl italic text-cream opacity-80 mb-8">"${r.quote}"</p>
+                    <div class="text-lg text-cream opacity-70 space-y-4 leading-relaxed mb-8">
                         ${r.body}
                     </div>
-                    <div class="feed-footer mt-8 pt-4">
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs text-muted-50">${r.author}</span>
-                            <span class="text-muted-30">·</span>
-                            <span class="text-xs text-muted-40">${r.date}</span>
-                        </div>
+                    <div class="flex items-center gap-2 text-xs opacity-50 uppercase tracking-widest">
+                        <span>${r.author}</span>
+                        <span>·</span>
+                        <span>${r.date}</span>
                     </div>
                 </div>
             </div>
         `).join('');
-
         reflectionsStackContainer.querySelectorAll('.scroll-anim').forEach(el => scrollObserver.observe(el));
     }
+    
 
     // Mobile Menu
     const menuBtn = document.querySelector('.mobile-menu-btn');
