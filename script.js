@@ -119,7 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${year}-${month}-${day}`;
     }
 
-    if (reflectionsStackContainer) {
+    const dailyQuoteEl = document.getElementById('daily-quote');
+    if (reflectionsStackContainer || dailyQuoteEl) {
         fetch(`data/reflections.json${cacheBuster}`)
             .then(res => res.json())
             .then(data => {
