@@ -1,5 +1,105 @@
 [
   {
+    "id": "inner-peace-1",
+    "date": "2026-04-14",
+    "label": "Note",
+    "title": "Finding the Center",
+    "quote": "Peace is not the absence of chaos, but the presence of stillness within it.",
+    "desc": "A reminder that our internal state can remain calm even when the world outside is in motion.",
+    "body": "<p>We often wait for the world to be quiet before we try to find peace. But true peace is found in the eye of the storm.</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-2",
+    "date": "2026-04-15",
+    "label": "Reflection",
+    "title": "The Power of Breath",
+    "quote": "Each breath is a new beginning, a chance to return home to yourself.",
+    "desc": "Focusing on the breath as the ultimate tool for presence.",
+    "body": "<p>When you feel lost, follow your breath. It is the thread that leads you back to the present moment.</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-3",
+    "date": "2026-04-16",
+    "label": "Contemplation",
+    "title": "Letting Go of Control",
+    "quote": "The trees don't try to grow; they just grow. Yield to your natural unfolding.",
+    "desc": "An exploration of Wu Wei and the wisdom of non-forcing.",
+    "body": "<p>We spend so much energy trying to shape our lives. What if we simply allowed life to shape us?</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-4",
+    "date": "2026-04-17",
+    "label": "Note",
+    "title": "The Beauty of Enough",
+    "quote": "Contentment is not having everything, but realizing you need nothing more.",
+    "desc": "Finding richness in simplicity and the present moment.",
+    "body": "<p>The search for 'more' is a journey with no end. The realization of 'enough' is the arrival at home.</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-5",
+    "date": "2026-04-18",
+    "label": "Reflection",
+    "title": "Watching the Mind",
+    "quote": "You are the observer of your thoughts, not the thoughts themselves.",
+    "desc": "Creating space between our awareness and our mental patterns.",
+    "body": "<p>Thoughts are like clouds passing across the sky. You are the vast, unchanging sky that holds them all.</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-6",
+    "date": "2026-04-19",
+    "label": "Note",
+    "title": "The Wisdom of Winter",
+    "quote": "Rest is not idleness; it is the soil in which the soul's next season grows.",
+    "desc": "Valuing periods of inactivity as essential for deep growth.",
+    "body": "<p>In nature, everything has a season of rest. Why do we expect ourselves to bloom all year round?</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-7",
+    "date": "2026-04-20",
+    "label": "Contemplation",
+    "title": "The Invisible Thread",
+    "quote": "We are all connected by the same silence that lives between our words.",
+    "desc": "Recognizing the underlying unity of all consciousness.",
+    "body": "<p>Beyond our names and forms, there is a shared stillness that binds us all together.</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-8",
+    "date": "2026-04-21",
+    "label": "Reflection",
+    "title": "The Courage to Be Soft",
+    "quote": "Softness is not weakness; it is the flexibility that prevents us from breaking.",
+    "desc": "Embracing vulnerability as a source of genuine resilience.",
+    "body": "<p>The hardest rocks are worn away by the softest water. Do not fear your gentleness.</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-9",
+    "date": "2026-04-22",
+    "label": "Note",
+    "title": "The Art of Listening",
+    "quote": "True listening requires a heart that is quiet enough to hear the unspoken.",
+    "desc": "Deepening our connection with others through presence.",
+    "body": "<p>When we listen only with our ears, we miss the melody. When we listen with our soul, we understand the song.</p>",
+    "author": "manomaya"
+  },
+  {
+    "id": "inner-peace-10",
+    "date": "2026-04-23",
+    "label": "Reflection",
+    "title": "The Eternal Present",
+    "quote": "Yesterday is a dream, tomorrow is a vision, but today well lived makes every yesterday a dream of happiness.",
+    "desc": "A classic reminder to inhabit the now.",
+    "body": "<p>The only reality you will ever touch is this one. Don't let it slip through your fingers while you reach for a ghost.</p>",
+    "author": "manomaya"
+  },
+  {
     "id": "embracing-unknown",
     "date": "2026-04-24",
     "label": "Reflection",
@@ -17,186 +117,6 @@
     "quote": "In the gap between two thoughts, the entire universe resides.",
     "desc": "Finding the profound stillness that exists in the brief moments of mental quietude.",
     "body": "<p>We spend most of our lives navigating a stream of continuous thought. But there is a hidden dimension in the brief silence between one thought ending and another beginning.</p><p>By paying attention to these gaps, we begin to touch a stillness that is not the absence of sound, but the presence of everything. It is here that we find our true center.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "impermanence-flow",
-    "date": "2026-04-26",
-    "label": "Note",
-    "title": "The Grace of Impermanence",
-    "quote": "Like a river, we are never the same person twice; the water flows, and so do we.",
-    "desc": "Accepting change as the only constant and finding peace in the fluid nature of existence.",
-    "body": "<p>We often resist change because it feels like losing a piece of ourselves. Yet, change is the very mechanism of life. Every cell in our body and every thought in our mind is in constant flux.</p><p>When we stop trying to freeze the river, we learn to swim with the current. This surrender is not defeat; it is the beginning of true freedom.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "inner-witness",
-    "date": "2026-04-27",
-    "label": "Reflection",
-    "title": "Becoming the Witness",
-    "quote": "You are not the storm; you are the sky in which the storm appears.",
-    "desc": "A shift in perspective from being overwhelmed by emotions to observing them with detachment.",
-    "body": "<p>When strong emotions arise, we often become identified with them. We say 'I am angry' or 'I am sad,' as if the emotion is our entire identity.</p><p>Instead, try saying 'Anger is arising within me.' This subtle shift creates a space between you and the experience. You are the vast, unchanging sky, and the emotions are just weather passing through.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "art-non-doing",
-    "date": "2026-04-28",
-    "label": "Contemplation",
-    "title": "The Art of Non-Doing",
-    "quote": "Nature does not hurry, yet everything is accomplished.",
-    "desc": "Learning to align our actions with the natural rhythms of life rather than forced effort.",
-    "body": "<p>We are taught that progress requires constant hustle and aggressive effort. But consider the flower or the forest—they grow without strain, moving in harmony with the seasons.</p><p>Non-doing is not laziness; it is intelligent action. It is knowing when to move and when to be still, allowing life to unfold through you rather than by you.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "shadow-light",
-    "date": "2026-04-29",
-    "label": "Note",
-    "title": "Shadow and Light",
-    "quote": "To know the light, one must first befriend the dark.",
-    "desc": "Integrating our hidden parts to reach a state of wholeness and genuine peace.",
-    "body": "<p>We often try to hide the parts of ourselves that we deem 'negative'—our fears, our regrets, our insecurities. But wholeness requires integration, not exclusion.</p><p>By shining the light of awareness on our shadows, we transform them. They no longer control us from the dark, but instead become part of the rich tapestry of our human experience.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "present-moment",
-    "date": "2026-04-30",
-    "label": "Reflection",
-    "title": "The Eternal Now",
-    "quote": "The present moment is the only time we ever have to live, to grow, and to see.",
-    "desc": "Breaking free from the prisons of past regrets and future anxieties.",
-    "body": "<p>The past is a memory; the future is an imagination. Both are ghosts that steal our attention away from the only reality that exists: this breath, this heartbeat, this moment.</p><p>When we truly inhabit the 'now,' we find that most of our problems vanish. They existed only in the time-bound mind, not in the present reality.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "compassion-self",
-    "date": "2026-05-01",
-    "label": "Contemplation",
-    "title": "Radical Self-Compassion",
-    "quote": "If your compassion does not include yourself, it is incomplete.",
-    "desc": "Treating our own struggles with the same kindness we offer to a dear friend.",
-    "body": "<p>We are often our own harshest critics, holding ourselves to impossible standards of perfection. But growth requires a soft environment, not a judgmental one.</p><p>Practice being your own sanctuary. When you fail, offer yourself a hand instead of a lecture. You are a work in progress, and that is enough.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "simplicity-soul",
-    "date": "2026-05-02",
-    "label": "Note",
-    "title": "The Wealth of Simplicity",
-    "quote": "Simplicity is the ultimate sophistication of the soul.",
-    "desc": "Finding richness in the minimal and stripping away the unnecessary noise of life.",
-    "body": "<p>In a world of constant accumulation, the act of letting go is a revolutionary one. We clutter our lives with things and our minds with information, hoping to find fulfillment.</p><p>But the soul thrives on space. By simplifying our surroundings and our desires, we make room for the truly essential to emerge.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "oneness-all",
-    "date": "2026-05-03",
-    "label": "Reflection",
-    "title": "The Illusion of Separation",
-    "quote": "You are not a drop in the ocean; you are the entire ocean in a drop.",
-    "desc": "Recognizing the interconnectedness of all life and our place within the whole.",
-    "body": "<p>We feel separate because of our physical boundaries and our individual egos. But we breathe the same air, are warmed by the same sun, and are made of the same stardust.</p><p>When we see the 'other' as an extension of ourselves, conflict dissolves into understanding. We are many expressions of a single, unified life.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "seed-potential",
-    "date": "2026-05-04",
-    "label": "Contemplation",
-    "title": "The Power of Patience",
-    "quote": "A seed does not boast of the forest it will become; it simply grows in the dark.",
-    "desc": "Honoring the invisible progress that happens during periods of stillness and waiting.",
-    "body": "<p>We live in a culture of instant results. We want the fruit without the season of growth. But the most significant transformations often happen in the dark, beneath the surface.</p><p>Trust your period of 'not knowing.' Trust the winter of your soul. Something is taking root, and in due time, it will reach for the light.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "listening-heart",
-    "date": "2026-05-05",
-    "label": "Note",
-    "title": "The Silent Language",
-    "quote": "The heart has reasons that the mind can never understand.",
-    "desc": "Connecting with intuition and the deeper wisdom that lies beyond logical thought.",
-    "body": "<p>The mind is a wonderful tool for calculation and analysis, but it is a poor master of the soul. There is a deeper intelligence that speaks through intuition, feeling, and a quiet 'knowing.'</p><p>When the mind becomes quiet, the heart can finally be heard. Listen to its whispers; they often point the way when the map is missing.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "forgiveness-release",
-    "date": "2026-05-06",
-    "label": "Reflection",
-    "title": "The Gift of Forgiveness",
-    "quote": "Forgiveness is the fragrance that the violet sheds on the heel that has crushed it.",
-    "desc": "Releasing the burden of resentment to free our own hearts from the past.",
-    "body": "<p>By forgiving, you cut the energetic cord that ties you to the pain. You are not doing it for them; you are doing it for your own liberation.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "gratitude-lens",
-    "date": "2026-05-07",
-    "label": "Contemplation",
-    "title": "The Alchemy of Gratitude",
-    "quote": "Gratitude turns what we have into enough, and more.",
-    "desc": "Transforming our experience of reality by shifting our focus from lack to abundance.",
-    "body": "<p>Gratitude is not a response to good fortune; it is a way of seeing. When we look for what is 'missing,' we will always find it. But when we look for what is present, we find a feast.</p><p>A grateful heart is a magnet for miracles. It recognizes the extraordinary within the ordinary and turns every moment into a blessing.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "breath-anchor",
-    "date": "2026-05-08",
-    "label": "Note",
-    "title": "The Anchor of Breath",
-    "quote": "The breath is the bridge which connects life to consciousness.",
-    "desc": "Using the rhythm of breathing as a constant tool for returning to the present.",
-    "body": "<p>No matter where you are or what is happening, your breath is always with you. It is the most reliable anchor in the storm of life.</p><p>By simply following one inhalation and one exhalation, you bring yourself back from the future and the past. You return to the home of the now.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "unlearning-wisdom",
-    "date": "2026-05-09",
-    "label": "Reflection",
-    "title": "The Wisdom of Unlearning",
-    "quote": "To attain knowledge, add things every day. To attain wisdom, remove things every day.",
-    "desc": "Stripping away conditioned beliefs to reveal our original, unclouded nature.",
-    "body": "<p>We are born with a clear lens, but as we grow, we accumulate layers of conditioning, beliefs, and judgments. Wisdom is the process of peeling these layers back.</p><p>It is not about finding more answers, but about having fewer questions. It is returning to the 'beginner's mind'—the state of pure, non-judgmental awareness.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "solitude-sanctuary",
-    "date": "2026-05-10",
-    "label": "Contemplation",
-    "title": "The Sacredness of Solitude",
-    "quote": "Solitude is the place where one finds that they are not alone.",
-    "desc": "Distinguishing between the pain of loneliness and the power of being at home with oneself.",
-    "body": "<p>Loneliness is the craving for the 'other'; solitude is the enjoyment of one's own presence. In the quiet of our own company, we encounter the depth of our being.</p><p>Do not fear the silence of an empty room. It is there that the universe finally has your full attention. You are your own best company.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "fragility-strength",
-    "date": "2026-05-11",
-    "label": "Note",
-    "title": "The Strength in Fragility",
-    "quote": "The oak fought the wind and was broken, the willow bent when it must and survived.",
-    "desc": "Valuing flexibility and softness as superior forms of resilience and strength.",
-    "body": "<p>We often mistake rigidity for strength. But that which cannot bend eventually breaks. True resilience lies in the ability to adapt, to yield, and to remain soft.</p><p>Be like water—the softest thing in the world, yet it can wear away the hardest rock. There is immense power in your gentleness.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "journey-within",
-    "date": "2026-05-12",
-    "label": "Reflection",
-    "title": "The Journey Within",
-    "quote": "Your task is not to seek for love, but merely to seek and find all the barriers within yourself that you have built against it.",
-    "desc": "A reminder that our greatest obstacles are the internal walls we create out of fear.",
-    "body": "<p>We look for peace, love, and joy as if they are distant treasures to be found. But they are our natural state. They are already here, buried beneath our fears and defenses.</p><p>The path is not one of reaching, but of releasing. When we let go of what we are not, what we truly are shines through naturally.</p>",
-    "author": "manomaya"
-  },
-  {
-    "id": "end-beginning",
-    "date": "2026-05-13",
-    "label": "Contemplation",
-    "title": "Ends and Beginnings",
-    "quote": "What the caterpillar calls the end of the world, the master calls a butterfly.",
-    "desc": "Recontextualizing moments of crisis as necessary transitions for transformation.",
-    "body": "<p>Every ending is a hidden beginning. When a door closes, we often stare so long at the closed door that we miss the window that has just opened.</p><p>Trust the transitions of your life. Even when it feels like everything is falling apart, it may actually be falling into place. Trust the process of your own becoming.</p>",
     "author": "manomaya"
   }
 ]

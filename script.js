@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .sort((a, b) => b.date.localeCompare(a.date));
 
                 if (reflectionsStackContainer) {
-                    renderReflectionsFeed(revealedReflections);
+                    renderStackReflections(revealedReflections);
                 }
                 
                 if (dailyQuoteEl && revealedReflections.length > 0) {
@@ -162,26 +162,28 @@ document.addEventListener('DOMContentLoaded', () => {
         stackingContainer.querySelectorAll('.scroll-anim').forEach(el => scrollObserver.observe(el));
     }
 
-    function renderReflectionsFeed(reflections) {
+    function renderStackReflections(reflections) {
         const savedIds = JSON.parse(localStorage.getItem('manomaya_saved') || '[]');
         reflectionsStackContainer.innerHTML = reflections.map(r => `
-            <div class="reflection-feed-item py-12 border-gold-bottom">
-                <div class="reflection-card-simple scroll-anim">
+            <div class="reflection-stack-layer">
+                <div class="reflection-stack-card scroll-anim">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                        <span class="feed-label text-gold uppercase tracking-widest text-xs">${r.label}</span>
+                        <span class="feed-label">${r.label}</span>
                         <button class="save-btn ${savedIds.includes(r.id) ? 'saved' : ''}" data-id="${r.id}" aria-label="Save">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
                         </button>
                     </div>
-                    <h2 class="text-3xl font-serif text-cream mb-4">${r.title}</h2>
-                    <p class="text-xl italic text-cream opacity-80 mb-8">"${r.quote}"</p>
-                    <div class="text-lg text-cream opacity-70 space-y-4 leading-relaxed mb-8">
+                    <h2 class="feed-title mt-2 mb-3">${r.title}</h2>
+                    <p class="feed-quote text-muted-foreground italic mb-6">"${r.quote}"</p>
+                    <div class="feed-body space-y-3">
                         ${r.body}
                     </div>
-                    <div class="flex items-center gap-2 text-xs opacity-50 uppercase tracking-widest">
-                        <span>${r.author}</span>
-                        <span>·</span>
-                        <span>${r.date}</span>
+                    <div class="feed-footer mt-8 pt-4">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs text-muted-50">${r.author}</span>
+                            <span class="text-muted-30">·</span>
+                            <span class="text-xs text-muted-40">${r.date}</span>
+                        </div>
                     </div>
                 </div>
             </div>
