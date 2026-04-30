@@ -27,12 +27,36 @@
     "id": "strength",
     "title": "strength",
     "desc": "The only moment that truly exists is right now.",
-    "image": "assets/gallery-4.jpg"
+    "image": "assets/gallery-5.jpg"
   },
   {
     "id": "AURA",
     "title": "AURA",
     "desc": "The only moment that truly exists is right now.",
-    "image": "assets/gallery-4.jpg"
+    "image": "assets/gallery-6.jpg"
   }
+    {
+    "id": "change",
+    "title": "Change",
+    "desc": "Change is not subtraction. It is recognition.",
+    "image": "assets/gallery-7.jpg"
+  },
+    {
+    "id": "identity",
+    "title": "Identity",
+    "desc": "What you call yourself is the smallest part of what you are",
+    "image": "assets/gallery-8.jpg"
+  },
+      {
+    "id": "moment",
+    "title": "Moment",
+    "desc": "Notice the moment before a thought arises. That gap is not absence. It is presence without form",
+    "image": "assets/gallery-9.jpg"
+  },
+      {
+    "id": "witness",
+    "title": "Witness",
+    "desc": "There is something within you that watches every thought without producing it. It does not argue. It does not approve. It simply sees.",
+    "image": "assets/gallery-10.jpg"
+  },
 ]
